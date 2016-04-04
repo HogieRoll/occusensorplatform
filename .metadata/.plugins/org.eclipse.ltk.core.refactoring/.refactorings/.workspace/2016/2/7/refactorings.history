@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;tcpEchoCC3X00_CC3200_LAUNCHXL_TI_CC3200&apos;" deleteContents="true" description="Delete resource &apos;tcpEchoCC3X00_CC3200_LAUNCHXL_TI_CC3200&apos;" element1="/tcpEchoCC3X00_CC3200_LAUNCHXL_TI_CC3200" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1454949924192"/>
+</session>
