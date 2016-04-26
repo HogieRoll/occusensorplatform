@@ -81,11 +81,20 @@
 //#define ULTRASONIC_SENSOR_ENABLE 		1
 #define PIR_SENSOR_ENABLE 			1
 
-#define POST_REQUEST_URI 			"/occupancysensorservlet"
-#define POST_DATA_OCCUPIED          "{\n\"SensorID\":\"C01\",\n\"Reading\":\"Occupied\"\n}"
-#define POST_DATA_NOCCUPIED			"{\n\"SensorID\":\"C01\",\n\"Reading\":\"Not Occupied\"\n}"
-									//"{\n\"SensorID\":\"C01\",\n\"Reading\":\"Occupied\"\n}"
+//#define C01//clear box
+#define C02//black box
 
+#define POST_REQUEST_URI 			"/occupancysensorservlet"
+
+#ifdef C01
+#define POST_DATA_OCCUPIED          "{\n\"SensorID\":\"C01\",\n\"Reading\":\"Occupied\"\n}"
+#define POST_DATA_NOCCUPIED			"{\n\"SensorID\":\"C01\",\n\"Reading\":\"Available\"\n}"
+#endif
+
+#ifdef C02
+#define POST_DATA_OCCUPIED          "{\n\"SensorID\":\"C02\",\n\"Reading\":\"Occupied\"\n}"
+#define POST_DATA_NOCCUPIED			"{\n\"SensorID\":\"C02\",\n\"Reading\":\"Available\"\n}"
+#endif
 
 #define GET_REQUEST_URI 	"/occupancysensorservlet"
 
@@ -1231,7 +1240,7 @@ while(1)
 	long PIRReading=0;
 	long UltraSonicReading=0;
 #ifdef PIR_SENSOR_ENABLE
-    int PIRSampleDelay=7000000;
+    int PIRSampleDelay=700000;
     int PIRPositiveReadings=0;//keeps track of number of positive reads
     int takenSamples=0;
     while(1)
@@ -1241,11 +1250,12 @@ while(1)
     	{
     		PIRReading=GPIOPinRead(GPIOA0_BASE, 0x1);
     		UART_PRINT("Sensor Reading: %li\n\r",PIRReading);
-    		PIRSampleDelay=7000000;
+    		PIRSampleDelay=700000;
     		takenSamples++;
     		if(PIRReading==1)
     		{
     			PIRPositiveReadings++;
+    			GPIOPinWrite(GPIOA1_BASE, 0x8, 0x8);
     		}
     		if(takenSamples==30)
     		{
@@ -1302,13 +1312,29 @@ while(1)
     {
     	CurrentOccStatus=1;
     }
+    else
+    {
+    	GPIOPinWrite(GPIOA1_BASE, 0x8, 0x0);
+    }
     UART_PRINT("\n Occupancy Status: %d\n\r", CurrentOccStatus);
     UART_PRINT("\n\r");
     UART_PRINT("HTTP Post Begin:\n\r");
     lRetVal = HTTPPostMethod(&httpClient, CurrentOccStatus);
+
     if(lRetVal < 0)
     {
     	UART_PRINT("HTTP Post failed.\n\r");
+    	lRetVal = ConnectToAP();
+    	if(lRetVal < 0)
+    	{
+    	    LOOP_FOREVER();
+    	}
+
+    	lRetVal = ConnectToHTTPServer(&httpClient);
+    	if(lRetVal < 0)
+    	{
+    	    LOOP_FOREVER();
+    	}
     }
     UART_PRINT("HTTP Post End:\n\r");
     UART_PRINT("\n\r");

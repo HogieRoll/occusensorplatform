@@ -1,7 +1,7 @@
 //*****************************************************************************
-// pinmux.c
+// pin_mux_config.c
 //
-// configure the device pins for different peripheral signals
+// configure the device pins for different signals
 //
 // Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/ 
 // 
@@ -36,8 +36,8 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 7/21/2014 at 3:06:20 PM
-// by TI PinMux version 3.0.334
+// This file was automatically generated on 4/25/2016 at 6:26:10 PM
+// by TI PinMux version 3.0.625 
 //
 //*****************************************************************************
 
@@ -46,51 +46,38 @@
 #include "hw_memmap.h"
 #include "hw_gpio.h"
 #include "pin.h"
-#include "rom.h"
-#include "rom_map.h"
 #include "gpio.h"
 #include "prcm.h"
 
 //*****************************************************************************
-void
-PinMuxConfig(void)
+void PinMuxConfig(void)
 {
-		//
-	    // Enable Peripheral Clocks
-	    //
-	    PRCMPeripheralClkEnable(PRCM_GPIOA0, PRCM_RUN_MODE_CLK);
+    //
+    // Enable Peripheral Clocks 
+    //
+    PRCMPeripheralClkEnable(PRCM_GPIOA0, PRCM_RUN_MODE_CLK);
+    PRCMPeripheralClkEnable(PRCM_GPIOA1, PRCM_RUN_MODE_CLK);
+    PRCMPeripheralClkEnable(PRCM_UARTA0, PRCM_RUN_MODE_CLK);
 
-	    //
-	    // Configure PIN_50 for GPIO Input--PIR Sensor In
-	    //
-	    PinTypeGPIO(PIN_50, PIN_MODE_0, false);
-	    GPIODirModeSet(GPIOA0_BASE, 0x1, GPIO_DIR_MODE_IN);
-	    /*// Configure PIN_58 for GPIO Input--US Sensor In
-        //
-        PinTypeGPIO(PIN_58, PIN_MODE_0, false);
-        GPIODirModeSet(GPIOA0_BASE, 0x8, GPIO_DIR_MODE_IN);
+    //
+    // Configure PIN_55 for UART0 UART0_TX
+    //
+    PinTypeUART(PIN_55, PIN_MODE_3);
 
-	    //
-	    // Configure PIN_59 for GPIO Output--US Sensor Driver
-	    //
-	    PinTypeGPIO(PIN_59, PIN_MODE_0, false);
-	    GPIODirModeSet(GPIOA0_BASE, 0x10, GPIO_DIR_MODE_OUT);*/
+    //
+    // Configure PIN_57 for UART0 UART0_RX
+    //
+    PinTypeUART(PIN_57, PIN_MODE_3);
 
-	    //
-        // Enable Peripheral Clocks
-        //
-        MAP_PRCMPeripheralClkEnable(PRCM_UARTA0, PRCM_RUN_MODE_CLK);
+    //
+    // Configure PIN_50 for GPIO Input
+    //
+    PinTypeGPIO(PIN_50, PIN_MODE_0, false);
+    GPIODirModeSet(GPIOA0_BASE, 0x1, GPIO_DIR_MODE_IN);
 
-        //
-        // Configure PIN_55 for UART0 UART0_TX
-        //
-        MAP_PinTypeUART(PIN_55, PIN_MODE_3);
-
-	    //
-	    // Configure PIN_57 for UART0 UART0_RX
-	    //
-	    MAP_PinTypeUART(PIN_57, PIN_MODE_3);
-
-
-
+    //
+    // Configure PIN_02 for GPIO Output
+    //
+    PinTypeGPIO(PIN_02, PIN_MODE_0, false);
+    GPIODirModeSet(GPIOA1_BASE, 0x8, GPIO_DIR_MODE_OUT);
 }

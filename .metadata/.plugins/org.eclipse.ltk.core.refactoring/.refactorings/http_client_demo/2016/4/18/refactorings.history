@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;http_client_demo/pin_mux_config.c&apos; to &apos;pinmux.c&apos;" description="Rename resource &apos;pin_mux_config.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="pin_mux_config.c" name="pinmux.c" stamp="1461626907872" updateReferences="true"/>
+</session>

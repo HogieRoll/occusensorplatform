@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="com.ti.ccstudio.project.ui.internal.properties.DynamicPropertiesPageManager">
-	</section>
 	<section name="CCS.ImportLegacyProjectWizard">
 		<item value="" key="AdvancedOptionsPage.COMMON_ROOT_VAR_NAME"/>
 		<item value="false" key="AdvancedOptionsPage.USE_COMMON_ROOT"/>
 		<item value="" key="AdvancedOptionsPage.COMMON_ROOT_PATH"/>
+	</section>
+	<section name="com.ti.ccstudio.project.ui.internal.properties.DynamicPropertiesPageManager">
 	</section>
 	<section name="com.ti.ccstudio.project.ui.internal.preferences.DynamicPreferencePageManager">
 	</section>
@@ -22,8 +22,8 @@
 			<item value="" key="CCS.DEVICE_ENDIANNESS"/>
 			<item value="" key="CCS.TOOL_CHAIN"/>
 			<item value="null" key="CCS.LINKER_COMMAND_FILE"/>
-			<item value="executable" key="CCS.OUTPUT_TYPE"/>
 			<item value="null" key="CCS.RUNTIME_SUPPORT_LIB"/>
+			<item value="executable" key="CCS.OUTPUT_TYPE"/>
 			<item value="" key="CCS.OUTPUT_FORMAT"/>
 		</section>
 	</section>

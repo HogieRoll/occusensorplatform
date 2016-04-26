@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;http_client_demo/pinmux.c&apos;" deleteContents="false" description="Delete resource &apos;http_client_demo/pinmux.c&apos;" element1="/http_client_demo/pinmux.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1461626861607"/>
+</session>
